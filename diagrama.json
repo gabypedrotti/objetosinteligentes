@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "author": "Gaby Pedrotti (Opcional)",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-v1", "id": "esp32", "top": -117.92, "left": 81.6, "attrs": {} },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "ultrasonic1",
+      "top": -75.3,
+      "left": -167.3,
+      "attrs": { "distance": "20" }
+    },
+    { "type": "wokwi-relay-module", "id": "relay1", "top": 125, "left": 278.4, "attrs": {} },
+    { "type": "wokwi-led", "id": "led1", "top": -3.6, "left": 416.6, "attrs": { "color": "red" } },
+    {
+      "type": "wokwi-resistor",
+      "id": "resistor1",
+      "top": 91.2,
+      "left": 393.05,
+      "rotate": 90,
+      "attrs": { "value": "220" }
+    },
+    { "type": "wokwi-vcc", "id": "vcc1", "top": 106.36, "left": 451.2, "attrs": {} },
+    { "type": "wokwi-lcd1602", "id": "lcd1", "top": -198.17, "left": -1539.2, "attrs": {} },
+    { "type": "wokwi-i2c", "id": "i2c1", "top": -200, "left": 300, "attrs": {} },
+    { "type": "wokwi-pushbutton", "id": "btn1", "top": 198.2, "left": 105.6, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp32:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp32:RX0", "$serialMonitor:TX", "", [] ],
+    [ "ultrasonic1:TRIG", "esp32:D5", "orange", [] ],
+    [ "ultrasonic1:ECHO", "esp32:D18", "green", [] ],
+    [ "ultrasonic1:VCC", "esp32:5V", "red", [] ],
+    [ "ultrasonic1:GND", "esp32:GND.2", "black", [] ],
+    [ "relay1:VCC", "esp32:5V", "red", [] ],
+    [ "relay1:GND", "esp32:GND.2", "black", [] ],
+    [ "relay1:IN", "esp32:D23", "blue", [] ],
+    [ "led1:A", "resistor1:1", "red", [] ],
+    [ "resistor1:2", "esp32:D23", "red", [] ],
+    [ "led1:C", "esp32:GND.3", "black", [] ],
+    [ "vcc1:VCC", "relay1:NO", "red", [] ],
+    [ "i2c1:SCL", "esp32:D22", "blue", [] ],
+    [ "i2c1:SDA", "esp32:D21", "green", [] ],
+    [ "i2c1:VCC", "esp32:3V3", "red", [] ],
+    [ "i2c1:GND", "esp32:GND.1", "black", [] ],
+    [ "i2c1:SCL", "lcd1:SCL", "blue", [] ],
+    [ "i2c1:SDA", "lcd1:SDA", "green", [] ],
+    [ "btn1:1.l", "esp32:GND.1", "black", [] ],
+    [ "btn1:2.r", "esp32:D13", "orange", [] ]
+  ],
+  "dependencies": {}
+}
