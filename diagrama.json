@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "author": "Gaby Pedrotti (Opcional)",
+  "author": "Gaby Pedrotti",
   "editor": "wokwi",
   "parts": [
     { "type": "board-esp32-devkit-v1", "id": "esp32", "top": -117.92, "left": 81.6, "attrs": {} },
