@@ -135,11 +135,17 @@ void loop() {
       digitalWrite(PIN_LED, bomba_ligada ? HIGH : LOW);
 
       float distancia = medirDistancia();
-      if (distancia >= 0 && distancia <= altura_reservatorio) {
+
+      if (distancia < 0 || distancia > altura_reservatorio) {
+        Serial.println("Distância fora de alcance ou erro na leitura!");
+        nivel_agua = 0.0;
+      } else {
         nivel_agua = altura_reservatorio - distancia;
       }
 
-      Serial.print("Nível da água: ");
+      Serial.print("Distância medida: ");
+      Serial.print(distancia);
+      Serial.print(" cm | Nível da água: ");
       Serial.print(nivel_agua);
       Serial.println(" cm");
 
